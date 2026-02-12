@@ -1,0 +1,38 @@
+###
+POST http://localhost:5066/api/museums
+Accept: application/json
+Content-Type: application/json
+
+{
+  "name": "Belgisch Stripcentrum - Museum", 
+  "location": "Brussels", 
+  "yearEstablished": "1989"
+}
+
+###
+# @no-redirect
+# @no-cookie-jar
+GET http://localhost:5066/Identity/Account/Login
+
+###
+# @no-redirect
+# @no-cookie-jar
+POST http://localhost:5066/Identity/Account/Login
+Content-Type: application/x-www-form-urlencoded
+Cookie: .AspNetCore.Antiforgery.YJng0G0HcEg=CfDJ8Ni6NbqycndBm5AxGViVgXmNt1i5HCkoB3S7pEMXHEZlNSkezh1pvugr5WEmrc2UZbb4mQeK5O7KXhVuoMjO-wSr4o3VL3YYemTDEhcUKN0I9Yqa5xIZWbAicAAhsJSZRzmTyMRjaSfyjFAxDO4L8z4
+
+Input.Email=admin@kdg.be&Input.Password=Password1!&__RequestVerificationToken=CfDJ8Ni6NbqycndBm5AxGViVgXkkaKwRbH8KcREmgJeWYJ2epoo6qyAPF7SIMcuyNUTYTVZWiL_tZneXrdaRGnusHBsO446ASf5rqPZYI31Wcx6EWnutnK1McsNYHiFJcL6v8-LCCyM_XLvFK7cz_4uo9dM&Input.RememberMe=false
+
+###
+
+POST http://localhost:5066/api/museums
+Content-Type: application/json
+Cookie: .AspNetCore.Identity.Application=CfDJ8Ni6NbqycndBm5AxGViVgXkoOalmzD1rhgrW-6-rmaEsQXbR-YPQjzc0Hx2wSJVvh-fb8IashHwpNf4UlAyiGdtD1LVN_EWl6A4rHm9wBq-YZTbHm__X4ravNIqpWzvyVJlszDuG178VZ0EOEgesMbSLytEk2jJlZg-J-gcN456vgKJwU0FlZsANTFalhPvCy8bU-sIPzF6HNFhTd3Rih_Sx9MvRRQJaZhETWkY8K1ra0lussBFbjDWqSFxPdf-Nsdsk5DeQxx3fOQEZudtij2UUY0z9NK7r0PE_4suz-894yILwX8iP97jupy77Uppnmd4PwEF3egimegQPaO_0VTd-dkRmGb4dvpRVVfigPCsH_W5n3x1UG_TiWGypuDtScecQyP0aIUoAYN9bKRP9eaY5wdUoKrNQoXJo3y5rXnZl64NGKdZqNrI7h_GO7Mp6KpsYu7LnTbsKJT3BnQIdK2aSnw26P2s0N86BLY4OQRzlJo0Y6qwUsgw_blpW1m4qFdNRuP3s47sjMo_6uquWJsafe5CBYqvjKLVyismUiJviKdkWberNLIr8iRvr64avjUmawsT74IJG3WWUbi4PEH7OAT0hy8w9SbEfL0MyZPcdC_medhPN2PKl5AsrTtgYqn2KvAIImnGGer3PNcVzcwrDZaTiaRlnl-Xtprg-glmvdsP_AvDl0HxisHh7oPfux6lrxP5jo1AZGFDjj_0KJudFmBXwDcnJwOd9Hm1mdj0oEDjAlJ5OWAXeMMkYeLfH6vPIn_bEo_OVJ2LTUCTcxxQT8HBiksSMh2JlBXHQaHaJWg5av2tS2_ln2zGbSjZK4FYX-zifz77yjCV-1FOd5c0
+
+{
+  "name": "Belgisch Stripcentrum - Museum",
+  "location": "Brussels",
+  "yearEstablished": "1989"
+}
+
+###

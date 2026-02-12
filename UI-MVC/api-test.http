@@ -1,0 +1,14 @@
+GET http://localhost:5066/api/museums
+Accept: application/json
+
+###
+
+# @no-redirect
+POST http://localhost:5066/api/museums
+Content-Type: application/json
+
+{
+  "name": "Belgisch Stripcentrum - Museum",
+  "location": "Brussels",
+  "yearEstablished": "1989"
+}
