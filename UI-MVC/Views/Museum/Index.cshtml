@@ -1,0 +1,29 @@
+@model dynamic
+
+@{
+    ViewBag.Title = "Museum";
+    Layout = "_Layout";
+}
+
+<h2>All Museums</h2>
+<table class="table">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Location</th>
+        <th>Year of founding</th>
+    </tr>
+    </thead>
+    <tbody id="museumsTableBody">
+    </tbody>
+</table>
+@if (User.Identity?.IsAuthenticated ?? false)
+{
+    <button class="btn btn-primary" type="button" id="refreshButton">Refresh</button>
+}
+
+@section Scripts
+{
+    <script src="js/Museum/Index.js" type="module">
+    </script>
+}

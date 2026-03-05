@@ -1,0 +1,33 @@
+@model IEnumerable<Artist>
+
+@{
+    ViewBag.Title = "Artists";
+    Layout = "_Layout";
+}
+
+<h2>All Artists</h2>
+<table class="table">
+    <thead>
+    <tr>
+        <th>First name</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Birthdate</th>
+        <th>Date of death</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var artist in Model)
+    {
+        <tr>
+            <td>@artist.FirstName</td>
+            <td>@artist.LastName</td>
+            <td>@artist.Age</td>
+            <td>@artist.BirthDate</td>
+            <td>@(artist.DeathDate.HasValue ? artist.DeathDate.ToString():"Still alive")</td>
+            <td><a asp-controller="Artist" asp-action="Details" asp-route-id="@artist.ArtistId">Details</a></td>
+        </tr>  
+    }
+    </tbody>
+</table>

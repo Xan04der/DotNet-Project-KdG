@@ -1,0 +1,87 @@
+@model Artist
+
+@{
+    ViewBag.Title = "Artist Details";
+    Layout = "_Layout";
+}
+
+<h2>@Model.LastName Details</h2>
+
+<section class="mb-3">
+    <div class="mb-3 row">
+        <span class="col-2 fw-bold">First Name</span>
+        <span class="col-10">@Model.FirstName</span>
+    </div>
+    <div class="mb-3 row">
+        <span class="col-2 fw-bold">Name</span>
+        <span class="col-10">@Model.LastName</span>
+    </div>
+    <div class="mb-3 row">
+        @if (Model.User.UserName == User.Identity?.Name || User.IsInRole(CustomIdentityConstants.AdminRoleName))
+        {
+            <span class="col-2 fw-bold">Age</span>
+            <input class="col-2" type="number" value='@Model.Age' id="ageSelect"/>
+        }
+        else
+        {
+            <span class="col-2 fw-bold">Age</span>
+            <span class="col-10">@Model.Age</span>
+        }
+    </div>
+    <div class="mb-3 row">
+        <span class="col-2 fw-bold">Birthdate</span>
+        <span class="col-10">@Model.BirthDate</span>
+    </div>
+    <div class="mb-3 row">
+        <span class="col-2 fw-bold">Date of death</span>
+        <span class="col-10">@(Model.DeathDate.HasValue ? Model.DeathDate.ToString():"Still alive")</span>
+    </div>
+    <div class="mb-3 row">
+        @if (Model.User.UserName == User.Identity?.Name || User.IsInRole(CustomIdentityConstants.AdminRoleName))
+        {
+            <button type="button" class="btn btn-primary btn-sm" id="updateButtonAge" data-artist-id="@Model.ArtistId">Update</button>
+        }
+        else
+        {
+            <small class="col-12 text-secondary">This is a task for @Model.User.Email</small>
+        }
+    </div>
+</section>
+
+<h3>Artworks</h3>
+<table class="table">
+    <thead>
+    <tr>
+        <th>Tutor</th>
+        <th>Timeframe</th>
+        <th>Name</th>
+        <th>Art movement</th>
+        <th>Year painted</th>
+        <th>Lenght</th>
+        <th>Width</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var artistArtwork in Model.Artworks)
+    {
+        <tr>
+            <td>@artistArtwork.Tutor</td>
+            <td>@artistArtwork.TimeFrame</td>
+            <td>@artistArtwork.Artwork.Name</td>
+            <td>@artistArtwork.Artwork.ArtMovement</td>
+            <td>@(artistArtwork.Artwork.YearPainted.HasValue ? artistArtwork.Artwork.YearPainted.ToString():"Date unknown")</td>
+            <td>@artistArtwork.Artwork.Length</td>
+            <td>@artistArtwork.Artwork.Width</td>
+            <td><a asp-controller="Artwork" asp-action="Details" asp-route-id="@artistArtwork.Artwork.ArtworkId">Details</a></td>
+        </tr>
+        
+    }
+    </tbody>
+</table>
+
+@section Scripts
+{
+    <script src="/js/Artist/details.js" type="module">
+    </script>
+}

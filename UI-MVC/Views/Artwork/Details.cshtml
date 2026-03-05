@@ -1,0 +1,75 @@
+@model Artwork
+
+@{
+    ViewBag.Title = "Artwork Details";
+    Layout = "_Layout";
+}
+
+<h2>@Model.Name Details</h2>
+
+<section class="mb-3">
+    <input type="hidden" value="@Model.ArtworkId" id="artworkId"/>
+    <div class="mb-3 row">
+        <span class="col-2 fw-bold">Name</span>
+        <span class="col-10">@Model.Name</span>
+    </div>
+    <div class="mb-3 row">
+        <span class="col-2 fw-bold">Art Movement</span>
+        <span class="col-10">@Model.ArtMovement</span>
+    </div>
+    <div class="mb-3 row">
+        <span class="col-2 fw-bold">Length</span>
+        <span class="col-10">@Model.Length</span>
+    </div>
+    <div class="mb-3 row">
+        <span class="col-2 fw-bold">Width</span>
+        <span class="col-10">@Model.Width</span>
+    </div>
+    <div class="mb-3 row">
+        <span class="col-2 fw-bold">Year it was Painted</span>
+        <span class="col-10">@(Model.YearPainted.HasValue ? Model.YearPainted.ToString() : "Date Unknown")</span>
+    </div>
+</section>
+
+<h2 class="mt-3">All artist who have worked on this artwork</h2>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>TimeFrame</th>
+        <th>Tutor</th>
+    </tr>
+    </thead>
+    <tbody id="artistsTableBody">
+    </tbody>
+</table>
+@if (User.Identity?.IsAuthenticated ?? false)
+{
+    <h2 class="mt-3">Link this artwork to another artist</h2>
+    <form>
+        <div class="mb-3">
+            <label class="form-label">Artist</label>
+            <select class="form-select" id="artistSelect">
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Time frame of working</label>
+            <input class="form-control" id="timeFrameInput"/>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="tutorCheckBox"/>
+            <label class="form-check-label" for="tutorCheckBox">
+                Was artist a tutor or student (during time of painting)
+            </label>
+        </div>
+        <button class="btn btn-primary" type="button" id="applyButton">Apply</button>
+    </form>
+}
+
+@section Scripts
+{
+    <script src="/js/Artwork/details.js" type="module">
+    </script>
+}
+
